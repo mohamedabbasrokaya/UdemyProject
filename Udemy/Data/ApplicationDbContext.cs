@@ -10,5 +10,6 @@ namespace Udemy.Data
         }
 
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }
