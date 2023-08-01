@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 
 namespace Udemy.Data
 {
@@ -9,5 +8,7 @@ namespace Udemy.Data
             : base(options)
         {
         }
+
+        public DbSet<Topic> Topics { get; set; }
     }
 }

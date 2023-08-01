@@ -13,6 +13,15 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
+
+.my-dropdown-toggle::after {
+    content: none;
+}
+
+.card-body::-webkit-scrollbar {
+    display: none; 
+}
+
+footer {
+    margin-top: auto;
 }

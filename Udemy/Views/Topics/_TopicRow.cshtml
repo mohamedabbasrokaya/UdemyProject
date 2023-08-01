@@ -1,0 +1,25 @@
+﻿
+@model TopicViewModel
+
+<tr>
+    <td>@Model.Name</td>
+    <td>
+        <span class="js-status badge rounded-pill bg-@(Model.IsDeleted ? "danger" : "success")">
+            @(Model.IsDeleted ? "Deleted" : "Available")
+        </span>
+    </td>
+    <td>@Model.CreatedOn</td>
+    <td class="js-updated-on">@Model.LastUpdatedOn</td>
+    <td>
+        <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle my-dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-sliders"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a href="javascript:;" class="dropdown-item js-render-modal" data-title="Edit Topic" data-url="/topics/edit/@Model.Id" data-update="true">Edit</a></li>
+                <li><a href="javascript:;" class="dropdown-item  js-toggle-status" data-url="/topics/togglestatus/@Model.Id">Toggle Status</a></li>
+
+            </ul>
+        </div>
+    </td>
+</tr>
