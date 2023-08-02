@@ -15,6 +15,8 @@
         public double Rating { get; set; }
         public double? OldPrice { get; set; }
         public double ActualPrice { get; set; }
+
+        [Display(Name = "Is This Course Best Seller?")]
         public bool BestSeller { get; set; }
         public string? ImageName { get; set; }
         public IFormFile? Image { get; set; }

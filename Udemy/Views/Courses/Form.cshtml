@@ -1,0 +1,85 @@
+﻿@model CourseViewModel
+
+@{
+    ViewData["title"] = "Course Form";
+}
+
+<div class="alert alert-primary mt-3" role="alert">
+    @(Model.Id.Equals(0) ? "Add" : "Edit") Course
+</div>
+<div class="card mt-3">
+    <div class="card-body p-0 d-flex">
+        
+        <form asp-controller="Courses" method="post" enctype="multipart/form-data" class="px-5 py-3 col-md-6">
+            @if (Model?.Id > 0)
+            {
+                <input type="hidden" asp-for="Id" />
+            }
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" asp-for="Title">
+                <label class="" asp-for="Title"></label>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <textarea type="text" class="form-control" asp-for="Description"></textarea>
+                <label class="form-label" asp-for="Description"></label>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="text" class="form-control" asp-for="Instructor">
+                <label class="form-label" asp-for="Instructor"></label>
+                <span asp-validation-for="Instructor" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="number" class="form-control" asp-for="Rating">
+                <label class="form-label" asp-for="Rating"></label>
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="number" class="form-control" asp-for="OldPrice">
+                <label class="form-label" asp-for="OldPrice"></label>
+                <span asp-validation-for="OldPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <input type="number" class="form-control" asp-for="ActualPrice">
+                <label class="form-label" asp-for="ActualPrice"></label>
+                <span asp-validation-for="ActualPrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" asp-for="BestSeller">
+                <label class="form-check-label" asp-for="BestSeller"></label>
+                <span asp-validation-for="BestSeller" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <select class="form-select" asp-for="TopicId" asp-items="@Model.Topics">
+                    <option value="">Select Topic</option>
+                </select>
+                <label class="form-label" asp-for="TopicId"></label>
+                <span asp-validation-for="TopicId" class="text-danger"></span>
+            </div>
+            <div class="mb-3 form-floating">
+                <select class="form-select" asp-for="CategoryId" asp-items="@Model.Categories">
+                    <option value="">Select Category</option>
+                </select>
+                <label class="form-label" asp-for="CategoryId"></label>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="Image"></label>
+                <input type="file" class="form-control" asp-for="Image" 
+                onchange="document.getElementById('ImagePreview').src = window.URL.createObjectURL(this.files[0])"/>
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary px-4">Save</button>
+        </form>
+        <div class="d-none d-md-block col-md-6">
+            <img src="~/images/courses/@(Model.ImageName is null ? "No-Image-Placeholder.svg" : Model.ImageName)" class="img-thumbnail mt-3" alt="NO Image Available!" id="ImagePreview">
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+     <partial name="_ValidationScriptsPartial" />
+}
