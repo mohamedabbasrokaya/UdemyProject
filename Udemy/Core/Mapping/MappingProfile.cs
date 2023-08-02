@@ -5,6 +5,7 @@
         public MappingProfile()
         {
             CreateMap<Topic, TopicViewModel>().ReverseMap();
+            CreateMap<Category, CategoryViewModel>().ReverseMap();
         }
     }
 }

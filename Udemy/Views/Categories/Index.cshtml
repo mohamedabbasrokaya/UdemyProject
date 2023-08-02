@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CategoryViewModel>
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<div class="card mt-3">
+    <div class="card-header d-flex m-0 justify-content-between">
+        <span class="fw-bold  h3">Categories</span>
+        <div>
+            <a href="javascript:;" class="btn btn-primary js-render-modal" data-title="Add Category" data-url="/Categories/create" >
+                Add
+                <span><i class="bi bi-plus"></i></span>
+            </a>
+        </div>
+    </div>
+    <div class="card-body p-0 ">   @*overflow:scroll*@
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning m-0" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                Sorry, There is no Categories right now!
+            </div>
+        }
+        else
+        {
+            <table class="table table-hover table-responsive table-light table-striped m-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>CreatedOn</th>
+                        <th>LastUpdatedOn</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var topic in Model)
+                    {
+                        <partial name="_CategoryRow" model="@topic" />
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@Html.AntiForgeryToken()
+
+@section Scripts{
+     <partial name="_ValidationScriptsPartial" />
+}

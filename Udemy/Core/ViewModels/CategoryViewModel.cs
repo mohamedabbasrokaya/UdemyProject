@@ -10,7 +10,9 @@
         [MaxLength(500, ErrorMessage = "The Description can't be more than 500char")]
         public string Description { get; set; } = null!;
 
+        [Display(Name = "Category Image")]
         public IFormFile? Image { get; set; }
-        public string? ImagePath { get; set; }
+
+        public string? ImageName { get; set; }
     }
 }

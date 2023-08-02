@@ -10,6 +10,6 @@
         [MaxLength(500)]
         public string Description { get; set; } = null!;
 
-        public string? ImagePath { get; set; }
+        public string? ImageName { get; set; }
     }
 }
