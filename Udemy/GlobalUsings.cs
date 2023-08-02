@@ -6,6 +6,8 @@ global using Microsoft.AspNetCore.Mvc;
 global using Udemy.Data;
 global using AutoMapper;
 global using Udemy.Filters;
+global using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 
 
