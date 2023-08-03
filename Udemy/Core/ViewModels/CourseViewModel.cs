@@ -1,6 +1,6 @@
 ﻿namespace Udemy.Core.ViewModels
 {
-    public class CourseViewModel
+    public class CourseViewModel:BaseModel
     {
         public int Id { get; set; }
 

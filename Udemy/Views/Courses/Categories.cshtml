@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CourseViewModel>
+
+@{
+    ViewData["Title"] = "categories";
+}
+
+<div class="card mt-3">
+    <div class="card-body p-0 ">
+        @*overflow:scroll*@
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning m-0" role="alert">
+                <i class="bi bi-exclamation-circle"></i>
+                Sorry, There is no categorys in this category right now!
+            </div>
+        }
+        else
+        {
+            <table class="table table-hover table-responsive table-light table-striped m-0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>CreatedOn</th>
+                        <th>LastUpdatedOn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <tr>
+                            <td>@category.Title</td>
+                            <td>
+                                <span class="js-status badge rounded-pill bg-@(category.IsDeleted ? "danger" : "success")">
+                                    @(category.IsDeleted ? "Deleted" : "Available")
+                                </span>
+                            </td>
+                            <td>@category.CreatedOn</td>
+                            <td class="js-updated-on">@category.LastUpdatedOn</td>   
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

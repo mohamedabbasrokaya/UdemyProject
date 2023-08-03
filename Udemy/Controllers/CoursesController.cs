@@ -65,14 +65,14 @@
                 course.ImageName = imageName;
             }
             _context.Courses.Add(course);
-            _context.SaveChanges();     
+            _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
         }
 
         private CourseViewModel PopulateViewModel(CourseViewModel? model = null)
         {
-            CourseViewModel viewModel = model is null ? new CourseViewModel() : model; 
+            CourseViewModel viewModel = model is null ? new CourseViewModel() : model;
 
             var topics = _context.Topics.Where(t => !t.IsDeleted).OrderBy(t => t.Name).AsNoTracking().ToList();
             var categories = _context.Categories.Where(t => !t.IsDeleted).OrderBy(t => t.Name).AsNoTracking().ToList();
@@ -83,7 +83,7 @@
             return viewModel;
         }
 
-        public IActionResult Edit(int id )
+        public IActionResult Edit(int id)
         {
             var course = _context.Courses.Find(id);
             if (course == null)
@@ -112,7 +112,7 @@
                 if (!string.IsNullOrEmpty(course.ImageName))
                 {
                     var oldImagePath = Path.Combine($"{_webHostEnvironment.WebRootPath}/images/courses", course.ImageName);
-                    if(System.IO.File.Exists(oldImagePath))
+                    if (System.IO.File.Exists(oldImagePath))
                         System.IO.File.Delete(oldImagePath);
                 }
                 var extension = Path.GetExtension(model.Image.FileName);
@@ -137,14 +137,43 @@
                 model.Image.CopyTo(stream);
 
                 model.ImageName = imageName;
-            }else if(model.Image is null && !string.IsNullOrEmpty(course.ImageName)) {
-                model.ImageName=course.ImageName;
             }
-            course = _mapper.Map(model,course);
+            else if (model.Image is null && !string.IsNullOrEmpty(course.ImageName))
+            {
+                model.ImageName = course.ImageName;
+            }
+            course = _mapper.Map(model, course);
             course.LastUpdatedOn = DateTime.Now;
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Index));
+        }
+
+
+        public IActionResult Topics(int id)
+        {
+            var courses = _context.Courses.Include(t => t.Topic).Where(c => c.Topic.Id == id).ToList();
+            if (!courses.Any())
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(_mapper.Map<IEnumerable<CourseViewModel>>(courses));
+            }
+        }
+
+        public IActionResult Categories(int id)
+        {
+            var courses = _context.Courses.Include(t => t.Category).Where(c => c.Category.Id == id).ToList();
+            if (!courses.Any())
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(_mapper.Map<IEnumerable<CourseViewModel>>(courses));
+            }
         }
     }
 }
