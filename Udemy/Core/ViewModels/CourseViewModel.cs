@@ -12,6 +12,8 @@
 
         [MaxLength(100, ErrorMessage = "Instructor name can't be more than 100char")]
         public string Instructor { get; set; } = null!;
+
+        [Range(0,5,ErrorMessage ="The rating should be between 0 and 5")]
         public double Rating { get; set; }
         public double? OldPrice { get; set; }
         public double ActualPrice { get; set; }

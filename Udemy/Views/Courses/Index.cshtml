@@ -1,5 +1,47 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<CourseViewModel>
 @{
+    ViewData["Title"] = "Courses";
 }
+
+<div class="container">
+    <div class="row mt-1">
+
+        @if(!Model.Any()){
+        <div class="alert alert-info" role="alert">
+            theres is no courses available right now!
+        </div>
+        }else{
+        @foreach (var course in Model)
+        {
+            <div class="card mt-1 p-0">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img src="~/images/courses/@(course.ImageName is null ? "No-Image-Placeholder.svg" : course.ImageName)"
+                         class=" rounded w-100" alt="NO Image Available!">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body lh-1">
+                            <h5 class="card-title">@course.Title</h5>
+                            <p class="card-text mb-2">@course.Description</p>
+                            <p class="fw-bold mb-1">Created by: <span class="fw-light text-uppercase">@course.Instructor</span></p>
+                            <p class="fw-bold mb-1">Rating: <span class="fw-light text-uppercase">@course.Rating</span></p>
+                            <p class="fw-bold mb-1">
+                                Price:
+                                <span class="fw-light text-uppercase text-decoration-line-through">@course.OldPrice$</span>
+                                <span class="fw-bolder text-uppercase text-success">@course.ActualPrice$</span>
+                            </p>
+                            @if (@course.BestSeller)
+                            {
+                                <h6><span class="badge bg-warning">BestSeller</span></h6>
+                            }
+                            <a class="btn btn-primary" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">Course Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        }
+
+
+    </div>
+</div>

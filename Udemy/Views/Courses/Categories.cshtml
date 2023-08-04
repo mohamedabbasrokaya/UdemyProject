@@ -1,46 +1,38 @@
 ﻿@model IEnumerable<CourseViewModel>
-
 @{
-    ViewData["Title"] = "categories";
+    ViewData["Title"] = "Courses";
 }
 
-<div class="card mt-3">
-    <div class="card-body p-0 ">
-        @*overflow:scroll*@
-        @if (!Model.Any())
+<div class="container">
+    <div class="row mt-1">
+        @foreach (var course in Model)
         {
-            <div class="alert alert-warning m-0" role="alert">
-                <i class="bi bi-exclamation-circle"></i>
-                Sorry, There is no categorys in this category right now!
+            <div class="card mt-1 p-0">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img src="~/images/courses/@(course.ImageName is null ? "No-Image-Placeholder.svg" : course.ImageName)"
+                         class=" rounded w-100" alt="NO Image Available!">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body lh-1">
+                            <h5 class="card-title">@course.Title</h5>
+                            <p class="card-text mb-2">@course.Description</p>
+                            <p class="fw-bold mb-1">Created by: <span class="fw-light text-uppercase">@course.Instructor</span></p>
+                            <p class="fw-bold mb-1">Rating: <span class="fw-light text-uppercase">@course.Rating</span></p>
+                            <p class="fw-bold mb-1">
+                                Price:
+                                <span class="fw-light text-uppercase text-decoration-line-through">@course.OldPrice$</span>
+                                <span class="fw-bolder text-uppercase text-success">@course.ActualPrice$</span>
+                            </p>
+                            @if (@course.BestSeller)
+                            {
+                                <h6><span class="badge bg-warning">BestSeller</span></h6>
+                            }
+                            <a class="btn btn-primary" asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">Course Details</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        }
-        else
-        {
-            <table class="table table-hover table-responsive table-light table-striped m-0">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>CreatedOn</th>
-                        <th>LastUpdatedOn</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var category in Model)
-                    {
-                        <tr>
-                            <td>@category.Title</td>
-                            <td>
-                                <span class="js-status badge rounded-pill bg-@(category.IsDeleted ? "danger" : "success")">
-                                    @(category.IsDeleted ? "Deleted" : "Available")
-                                </span>
-                            </td>
-                            <td>@category.CreatedOn</td>
-                            <td class="js-updated-on">@category.LastUpdatedOn</td>   
-                        </tr>
-                    }
-                </tbody>
-            </table>
         }
     </div>
 </div>

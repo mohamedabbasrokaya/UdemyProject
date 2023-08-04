@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TopicViewModel>
+
+
+<div class="featured-cources border-outline">
+
+    <ul class="nav nav-tabs" role="tablist" id="myTab">
+
+        @foreach (var topic in Model)
+        {
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-dark "
+                    id="@topic.Name.Split(' ').FirstOrDefault()-tab"
+                    data-bs-toggle="tab"
+                    data-tab="@topic.Name.Split(' ').FirstOrDefault()"
+                    data-bs-target="#@topic.Name.Split(' ').FirstOrDefault()-tab-pane"
+                    type="button"
+                    role="tab"
+                    aria-controls="@topic.Name.Split(' ').FirstOrDefault()-tab-pane"
+                    aria-selected="true"
+                    tabindex="-1">
+                    @topic.Name
+                </button>
+            </li>
+
+        }
+
+    </ul>
+
+
+    <div class="tab-content" id="featured-courses-Content">
+        @foreach (var topic in Model)
+        {
+            <div class="tab-pane fade text-start" id="@topic.Name.Split(' ').FirstOrDefault()-tab-pane" role="tabpanel" aria-labelledby="@topic.Name.Split(' ').FirstOrDefault()-tab" tabindex="0">
+                <div class="tab-pan-content ps-4">
+                    <h2>@topic.Name</h2>
+                    <p >@topic.Description</p>
+                    <a class="btn btn-outline-dark " asp-controller="courses" asp-action="topics" asp-route-id="@topic.Id">@topic.Name</a>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+

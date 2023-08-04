@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<CategoryViewModel>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -8,4 +9,17 @@
     <a class="btn btn-primary" asp-controller="Topics" asp-action="Index">Topics dashboard </a>
     <a class="btn btn-secondary" asp-controller="Categories" asp-action="Index">Categories dashboard </a>
     <a class="btn btn-warning text-white " asp-controller="Courses" asp-action="Create">Create Course </a>
+
+    <partial name="_Topics" model="@ViewBag.topicsviewModel"/>
+    <partial name="_TopCategories" model="Model"/>
 </div>
+
+@section Scripts{
+<script>
+    //open the first tabe in topics on document ready
+    $(document).ready(function(){
+        $("#featured-courses-Content div:first-child").addClass('show active');
+        $("#myTab li:first-child button").addClass('active')
+    })
+</script>
+}

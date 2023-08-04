@@ -1,16 +1,16 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 
@@ -19,7 +19,7 @@ html {
 }
 
 .card-body::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
 
 body {
@@ -27,6 +27,14 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 footer {
     margin-top: auto;
+}
+
+.category-img:hover {
+    transform: scale(1.05);
+}
+.category-img  {
+    transition: transform 150ms ease-in;
 }

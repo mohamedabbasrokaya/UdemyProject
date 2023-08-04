@@ -20,7 +20,18 @@
 
         public IActionResult Index()
         {
-            return View();
+            var courses = _context.Courses.ToList();
+            return View(_mapper.Map<IEnumerable<CourseViewModel>>(courses));
+        }
+
+        public IActionResult Details(int id)        
+        {
+            var course = _context.Courses.Find(id);
+            if (course == null)
+                return NotFound();
+            var viewModel = _mapper.Map<CourseViewModel>(course);
+
+            return View(viewModel);
         }
 
         public IActionResult Create()
@@ -67,7 +78,7 @@
             _context.Courses.Add(course);
             _context.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+            return View("Details", _mapper.Map<CourseViewModel>(course));
         }
 
         private CourseViewModel PopulateViewModel(CourseViewModel? model = null)

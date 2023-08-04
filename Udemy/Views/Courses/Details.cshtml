@@ -1,0 +1,28 @@
+﻿@model CourseViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="~/images/courses/@(Model.ImageName is null ? "No-Image-Placeholder.svg" : Model.ImageName)" class="img-thumbnail mt-3" alt="NO Image Available!" id="ImagePreview">
+        </div>
+        <div class="col-md-8 mt-2">
+            <h2>@Model.Title</h2>
+            <p>@Model.Description</p>
+            <p class="fw-bold">Created by: <span class="fw-light text-uppercase">@Model.Instructor</span></p>
+            <p class="fw-bold">Rating: <span class="fw-light text-uppercase">@Model.Rating</span></p>
+            <p class="fw-bold">Price: 
+                <span class="fw-light text-uppercase text-decoration-line-through">@Model.OldPrice$</span>
+                <span class="fw-bolder text-uppercase text-success">@Model.ActualPrice$</span>
+            </p>
+            @if (@Model.BestSeller)
+            {
+            <h6><span class="badge bg-warning">BestSeller</span></h6>
+            }
+            <a href="#" class="btn btn-primary">Add To Cart <i class="bi bi-cart3"></i></a>
+
+        </div>
+    </div>
+</div>
