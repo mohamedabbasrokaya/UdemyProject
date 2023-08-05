@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 using Udemy.Core.Mapping;
+using Microsoft.EntityFrameworkCore;
+using Udemy.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
