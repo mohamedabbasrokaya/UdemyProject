@@ -4,6 +4,8 @@
 }
 
 <div class="text-center">
+    <a class="fw-bolder" asp-controller="courses" asp-action="create"><i class="bi bi-plus-circle fw-bolder"></i>Add New Course</a>
+
    @* <h1 class="display-4">Welcome</h1>
 
     <a class="btn btn-primary" asp-controller="Topics" asp-action="Index">Topics dashboard </a>
@@ -11,7 +13,7 @@
     <a class="btn btn-warning text-white " asp-controller="Courses" asp-action="Create">Create Course </a>
 *@
     @*start owl carousel*@
-    <div class="main-content mt-5 mb-3">
+    <div class="main-content mt-3 mb-3">
         <div class="owl-carousel owl-theme">
             <div class="item">
                 <img src="~/assets/images/slider.png" alt="Picture 1">
@@ -39,7 +41,7 @@
     </div>
     @*end owl carousel*@
 
-    <h3 class="text-start">A broad selection of cources</h3>
+    <h3 class="text-start">A broad selection of courses</h3>
     <p class="text-start">choose from 183000 online video courses with new addition puplished every month</p>
 
 
@@ -56,13 +58,12 @@
             $("#featured-courses-Content div:first-child").addClass('show active');
             $("#myTab li:first-child button").addClass('active')
 
-            //owlcaroseul
+        //owlcaroseul
        $('.owl-carousel').owlCarousel({
         loop:true,
         margin:10,
         dots:false,
         autoplay:true,
-
         responsive:{
             0:{
                 items:1
@@ -75,6 +76,8 @@
             }
         }
     })
+
+
    
         })
 </script>
