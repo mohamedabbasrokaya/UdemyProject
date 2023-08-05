@@ -35,6 +35,17 @@ footer {
 .category-img:hover {
     transform: scale(1.05);
 }
-.category-img  {
+
+.category-img {
     transition: transform 150ms ease-in;
+}
+
+.header-bannar {
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    background-color: #fff;
+    padding: 20px;
+    display: block;
+    max-width: 400px;
 }

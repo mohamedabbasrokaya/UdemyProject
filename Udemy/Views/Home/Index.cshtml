@@ -4,22 +4,78 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+   @* <h1 class="display-4">Welcome</h1>
 
     <a class="btn btn-primary" asp-controller="Topics" asp-action="Index">Topics dashboard </a>
     <a class="btn btn-secondary" asp-controller="Categories" asp-action="Index">Categories dashboard </a>
     <a class="btn btn-warning text-white " asp-controller="Courses" asp-action="Create">Create Course </a>
+*@
+    @*start owl carousel*@
+    <div class="main-content mt-5 mb-3">
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+                <img src="~/assets/images/slider.png" alt="Picture 1">
+                <div class="header-bannar">
+                <h4>Free New Year Starter Pack</h4>
+                <p>Courses start at $14.99. Get your new-student offer before it expires.<a href="#">see details</a></p>
+             </div>
+            </div>
+            <div class="item">
+                <img src="~/assets/images/slider2.jpg" alt="Picture 2">
+                <div class="header-bannar">
+                <h4>Free New Year Starter Pack</h4>
+                <p>Courses start at $14.99. Get your new-student offer before it expires.<a href="#">see details</a></p>
+             </div>
+            </div>
+            <div class="item">
+              <div> <img src="~/assets/images/slider3.jpg" alt="nn"></div>
+            <div class="header-bannar">
+                <h4>Free New Year Starter Pack</h4>
+                <p>Courses start at $14.99. Get your new-student offer before it expires.<a href="#">see details</a></p>
+             </div>
+          </div>
+        </div>
+       
+    </div>
+    @*end owl carousel*@
 
-    <partial name="_Topics" model="@ViewBag.topicsviewModel"/>
-    <partial name="_TopCategories" model="Model"/>
+    <h3 class="text-start">A broad selection of cources</h3>
+    <p class="text-start">choose from 183000 online video courses with new addition puplished every month</p>
+
+
+
+    <partial name="_Topics" model="@ViewBag.topicsviewModel" />
+    <partial name="_Skills"/>
+    <partial name="_TopCategories" model="Model" />
 </div>
 
 @section Scripts{
 <script>
-    //open the first tabe in topics on document ready
-    $(document).ready(function(){
-        $("#featured-courses-Content div:first-child").addClass('show active');
-        $("#myTab li:first-child button").addClass('active')
+        //open the first tabe in topics on document ready
+        $(document).ready(function(){
+            $("#featured-courses-Content div:first-child").addClass('show active');
+            $("#myTab li:first-child button").addClass('active')
+
+            //owlcaroseul
+       $('.owl-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        dots:false,
+        autoplay:true,
+
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:1
+            },
+            1000:{
+                items:1
+            }
+        }
     })
+   
+        })
 </script>
 }
